@@ -1,3 +1,4 @@
+import Navbar from "./components/Navbar";
 const POSTS = [
   {
     id: 1,
@@ -28,7 +29,11 @@ const USERS = [
 ];
 
 function App() {
-  return <div></div>;
+  return (
+    <div>
+      <Navbar />
+    </div>
+  );
 }
 
 export default App;
