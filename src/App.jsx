@@ -1,6 +1,7 @@
 import Navbar from "./components/Navbar";
-import PostCard from "./components/PostCard";
 import PostList from "./components/PostList";
+import UserCard from "./components/UserCard";
+
 const POSTS = [
   {
     id: 1,
@@ -34,7 +35,37 @@ function App() {
   return (
     <div>
       <Navbar />
-      <PostList posts={POSTS} />
+      <div
+        style={{
+          maxWidth: "900px",
+          margin: "2rem auto",
+          padding: "0 1rem",
+          display: "grid",
+          gridTemplateColumns: "2fr 1fr",
+          gap: "2rem",
+        }}
+      >
+        {/* คอลัมน์ซ้าย: โพสต์ */}
+        <div>
+          <PostList posts={POSTS} />
+        </div>
+
+        {/* คอลัมน์ขวา: สมาชิก */}
+        <div>
+          <h2
+            style={{
+              color: "#2d3748",
+              borderBottom: "2px solid #1e40af",
+              paddingBottom: "0.5rem",
+            }}
+          >
+            สมาชิก
+          </h2>
+          {USERS.map((user) => (
+            <UserCard key={user.id} name={user.name} email={user.email} />
+          ))}
+        </div>
+      </div>
     </div>
   );
 }
