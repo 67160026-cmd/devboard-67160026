@@ -14,7 +14,25 @@ function PostList({ posts }) {
       </h2>
 
       {posts.map((post) => (
-        <PostCard key={post.id} title={post.title} body={post.body} />
+        <div key={post.id} className="post-card">
+          <h3>{post.title}</h3>
+          <p>{post.body}</p>
+
+          <button
+            onClick={() => onDelete(post.id)}
+            style={{
+              backgroundColor: "#dc2626", // สีแดง
+              color: "white",
+              border: "none",
+              padding: "0.4rem 0.8rem",
+              borderRadius: "6px",
+              cursor: "pointer",
+              marginTop: "0.5rem",
+            }}
+          >
+            ลบโพสต์
+          </button>
+        </div>
       ))}
     </div>
   );
