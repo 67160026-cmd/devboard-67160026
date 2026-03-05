@@ -1,7 +1,6 @@
 import Navbar from "./components/Navbar";
 import PostList from "./components/PostList";
 import UserCard from "./components/UserCard";
-import { useState } from "react";
 
 const POSTS = [
   {
@@ -33,13 +32,6 @@ const USERS = [
 ];
 
 function App() {
-  const [posts, setPosts] = useState(POSTS); // ใช้ state แทน POSTS
-
-  const handleDelete = (id) => {
-    const updatedPosts = posts.filter((post) => post.id !== id);
-    setPosts(updatedPosts);
-  };
-
   return (
     <div>
       <Navbar />
@@ -54,8 +46,9 @@ function App() {
         }}
       >
         {/* คอลัมน์ซ้าย: โพสต์ */}
+
         <div>
-          <PostList posts={posts} onDelete={handleDelete} />
+          <PostList posts={POSTS} />
         </div>
 
         {/* คอลัมน์ขวา: สมาชิก */}

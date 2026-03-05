@@ -1,8 +1,10 @@
 import PostCard from "./PostCard";
+import PostCount from "./PostCount";
 
 function PostList({ posts }) {
   return (
     <div>
+      <PostCount posts={posts} />
       <h2
         style={{
           color: "#2d3748",
@@ -12,27 +14,8 @@ function PostList({ posts }) {
       >
         โพสต์ล่าสุด
       </h2>
-
       {posts.map((post) => (
-        <div key={post.id} className="post-card">
-          <h3>{post.title}</h3>
-          <p>{post.body}</p>
-
-          <button
-            onClick={() => onDelete(post.id)}
-            style={{
-              backgroundColor: "#dc2626", // สีแดง
-              color: "white",
-              border: "none",
-              padding: "0.4rem 0.8rem",
-              borderRadius: "6px",
-              cursor: "pointer",
-              marginTop: "0.5rem",
-            }}
-          >
-            ลบโพสต์
-          </button>
-        </div>
+        <PostCard key={post.id} title={post.title} body={post.body} />
       ))}
     </div>
   );
