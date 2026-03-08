@@ -1,5 +1,6 @@
 import { useState } from "react";
 import PostCard from "./PostCard";
+import PostCount from "./PostCount";
 
 function PostList({ posts, favorites, onToggleFavorite }) {
   const [search, setSearch] = useState("");
@@ -11,6 +12,7 @@ function PostList({ posts, favorites, onToggleFavorite }) {
 
   return (
     <div>
+      <PostCount posts={posts} />
       <h2
         style={{
           color: "#2d3748",

@@ -10,9 +10,7 @@ function PostCard({ title, body, isFavorite, onToggleFavorite }) {
       }}
     >
       <h3 style={{ margin: "0 0 0.5rem", color: "#1e40af" }}>{title}</h3>
-      <p style={{ margin: "0 0 0.75rem", color: "#4a5568", lineHeight: 1.6 }}>
-        {body}
-      </p>
+      <p style={{ margin: 0, color: "#4a5568", lineHeight: 1.6 }}>{body}</p>
 
       {/* ปุ่มถูกใจ */}
       <button

@@ -4,6 +4,9 @@ function AddPostForm({ onAddPost }) {
   const [title, setTitle] = useState("");
   const [body, setBody] = useState("");
 
+  const Max_Title = 100;
+  const countTitle = Max_Title - title.length;
+
   function handleSubmit(e) {
     e.preventDefault();
     if (!title.trim() || !body.trim()) return; // ป้องกันส่งว่าง
@@ -33,6 +36,7 @@ function AddPostForm({ onAddPost }) {
         placeholder="หัวข้อโพสต์"
         value={title}
         onChange={(e) => setTitle(e.target.value)}
+        maxLength={Max_Title}
         style={{
           width: "100%",
           padding: "0.5rem",
@@ -43,6 +47,18 @@ function AddPostForm({ onAddPost }) {
           boxSizing: "border-box",
         }}
       />
+
+      {/* ตัวนับตัวอักษร */}
+      <div
+        style={{
+          textAlign: "right",
+          fontSize: "0.8rem",
+          marginBottom: "0.5rem",
+          color: countTitle < 10 ? "#e53e3e" : "#718096", // เปลี่ยนสีเมื่อ countTitle น้อยกว่า 10 EX. 100(Max_Title) - 91(title.length) = 9 จะเปลี่ยนเป็นสีแดง
+        }}
+      >
+        {title.length}/{Max_Title}
+      </div>
 
       <textarea
         placeholder="เนื้อหาโพสต์"
