@@ -9,10 +9,10 @@ function AddPostForm({ onAddPost }) {
 
   function handleSubmit(e) {
     e.preventDefault();
-    if (!title.trim() || !body.trim()) return; // ป้องกันส่งว่าง
+    if (!title.trim() || !body.trim()) return;
 
     onAddPost({ title, body });
-    setTitle(""); // เคลียร์ form
+    setTitle("");
     setBody("");
   }
 

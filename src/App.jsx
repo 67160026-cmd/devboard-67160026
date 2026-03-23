@@ -6,25 +6,23 @@ import AddPostForm from "./components/AddPostForm";
 
 function App() {
   const [favorites, setFavorites] = useState([]);
+  const [posts, setPosts] = useState([]);
 
-  // Toggle ถูกใจ/ยกเลิก
   function handleToggleFavorite(postId) {
-    setFavorites(
-      (prev) =>
-        prev.includes(postId)
-          ? prev.filter((id) => id !== postId) // ลบออก
-          : [...prev, postId], // เพิ่มเข้า
+    setFavorites((prev) =>
+      prev.includes(postId)
+        ? prev.filter((id) => id !== postId)
+        : [...prev, postId],
     );
   }
 
-  // เพิ่มโพสต์ใหม่
   function handleAddPost({ title, body }) {
     const newPost = {
-      id: Date.now(), // ใช้ timestamp เป็น id ชั่วคราว
+      id: Date.now(),
       title,
       body,
     };
-    setPosts((prev) => [newPost, ...prev]); // เพิ่มไว้ด้านบน
+    setPosts((prev) => [newPost, ...prev]);
   }
 
   return (
@@ -42,10 +40,12 @@ function App() {
         }}
       >
         <div>
-          <AddPostForm onAddPost={() => {}} /> {/* จะเชื่อมใน wk14 */}
+          <AddPostForm onAddPost={handleAddPost} />
           <PostList
             favorites={favorites}
             onToggleFavorite={handleToggleFavorite}
+            posts={posts}
+            setPosts={setPosts}
           />
         </div>
         <div>

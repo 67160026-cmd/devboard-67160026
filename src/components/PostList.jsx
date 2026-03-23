@@ -3,8 +3,7 @@ import PostCard from "./PostCard";
 import LoadingSpinner from "./LoadingSpinner";
 import PostCount from "./PostCount";
 
-function PostList({ favorites, onToggleFavorite }) {
-  const [posts, setPosts] = useState([]);
+function PostList({ favorites, onToggleFavorite, posts, setPosts }) {
   const [loading, setLoading] = useState(true);
   const [error, setError] = useState(null);
   const [search, setSearch] = useState("");
@@ -17,7 +16,7 @@ function PostList({ favorites, onToggleFavorite }) {
         const res = await fetch("https://jsonplaceholder.typicode.com/posts");
         if (!res.ok) throw new Error("ดึงข้อมูลไม่สำเร็จ");
         const data = await res.json();
-        setPosts(data.slice(0, 20)); // เอาแค่ 20 รายการแรก
+        setPosts(data.slice(0, 20));
       } catch (err) {
         setError(err.message);
       } finally {
@@ -25,8 +24,7 @@ function PostList({ favorites, onToggleFavorite }) {
       }
     }
     fetchPosts();
-  }, []); // [] = ทำครั้งเดียวตอน component mount
-  // กรองโพสต์ตาม search
+  }, [setPosts]);
 
   const filtered = posts.filter((post) =>
     post.title.toLowerCase().includes(search.toLowerCase()),
@@ -61,7 +59,6 @@ function PostList({ favorites, onToggleFavorite }) {
         โพสต์ล่าสุด
       </h2>
 
-      {/* Search Input */}
       <input
         type="text"
         placeholder="ค้นหาโพสต์..."
@@ -78,17 +75,16 @@ function PostList({ favorites, onToggleFavorite }) {
         }}
       />
 
-      {/* ถ้าไม่พบโพสต์ */}
       {filtered.length === 0 && (
         <p style={{ color: "#718096", textAlign: "center", padding: "2rem" }}>
           ไม่พบโพสต์ที่ค้นหา
         </p>
       )}
 
-      {/* แสดงรายการโพสต์ */}
       {filtered.map((post) => (
         <PostCard
           key={post.id}
+          post={post}
           title={post.title}
           body={post.body}
           isFavorite={favorites.includes(post.id)}
